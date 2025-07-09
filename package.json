@@ -2,7 +2,7 @@
   "name": "uauth",
   "version": "0.0.1",
   "description": "auth service for php services by uys2000",
-  "main": "main.ts",
+  "main": "dist/main.ts",
   "repository": "https://github.com/uys2000-service/uauth",
   "author": "uys2000",
   "license": "MIT",

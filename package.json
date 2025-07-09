@@ -1,0 +1,20 @@
+{
+  "name": "uauth",
+  "version": "0.0.1",
+  "description": "auth service for php services by uys2000",
+  "main": "main.ts",
+  "repository": "https://github.com/uys2000-service/uauth",
+  "author": "uys2000",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn tsx --watch ./src/main.ts",
+    "build": "yarn tsc",
+    "watch:ts": "yarn tsx --config tsconfig.watch.json && yarn watch:ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tsc": "^2.0.4",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}

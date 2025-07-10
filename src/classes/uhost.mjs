@@ -1,12 +1,18 @@
 export class UHost {
-  local = "http://localhost:8000/api/auth/";
-  test = "https://services-test.mehmetuysal.dev/api/auth/";
-  production = "https://services.mehmetuysal.dev/api/auth/";
+  local = "http://localhost:8000/api/";
+  test = "https://services-test.mehmetuysal.dev/api/";
+  production = "https://services.mehmetuysal.dev/api/";
   host = this.local;
-  constructor(environment, local, test, production) {
+  constructor(environment, service, local, test, production) {
     if (local) this.local = local;
     if (test) this.test = test;
     if (production) this.production = production;
+
+    if (service) {
+      this.local += service + "/";
+      this.test += service + "/";
+      this.production += service + "/";
+    }
 
     switch (environment) {
       case "local":

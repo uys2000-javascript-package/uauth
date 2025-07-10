@@ -1,5 +1,7 @@
-import { UPath } from "./classes/upath.mjs";
+import { UAuthPath, USessionPath } from "./classes/upath.mjs";
 import { UHost } from "./classes/uhost.mjs";
-import { UAuth } from "./classes/uauth.mjs";
+import { UAuthService } from "./classes/uauth.mjs";
+import { USessionService } from "./classes/usession.mjs";
 
-export { UHost, UPath, UAuth };
+export { UHost, UAuthPath, USessionPath };
+export { UAuthService, USessionService };

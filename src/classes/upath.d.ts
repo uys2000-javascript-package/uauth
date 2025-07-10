@@ -1,4 +1,4 @@
-export class UPath {
+export class UAuthPath {
   signin: string;
   signup: string;
   signout: string;
@@ -9,4 +9,11 @@ export class UPath {
     signout?: string,
     signoff?: string
   );
+}
+
+export class USessionPath {
+  check: string;
+  list: string;
+  remove: string;
+  constructor(check?: string, list?: string, remove?: string);
 }

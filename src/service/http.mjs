@@ -7,7 +7,7 @@ export const getUrl = (url, params = {}) => {
   return uri.toString();
 };
 
-export const get = async (url, params, token) => {
+export const doGet = async (url, params, token) => {
   const headers = {};
   if (token) headers.Token = token;
   return window.fetch(getUrl(url, params), {
@@ -16,12 +16,21 @@ export const get = async (url, params, token) => {
   });
 };
 
-export const post = async (url, params, body, token) => {
+export const doPost = async (url, params, body, token) => {
   const headers = {};
   if (token) headers.Token = token;
   return window.fetch(getUrl(url, params), {
     headers: headers,
     method: "POST",
     body: JSON.stringify(body),
+  });
+};
+
+export const doDelete = async (url, params, token) => {
+  const headers = {};
+  if (token) headers.Token = token;
+  return window.fetch(getUrl(url, params), {
+    headers: headers,
+    method: "DELETE",
   });
 };

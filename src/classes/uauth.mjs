@@ -1,21 +1,21 @@
-import { get, post } from "../service/http.mjs";
+import { doGet, doPost } from "../service/http.mjs";
 import { UHost } from "./uhost.mjs";
-import { UPath } from "./upath.mjs";
-export class UAuth {
-  host = new UHost("local");
-  path = new UPath();
+import { UAuthPath } from "./upath.mjs";
+
+export class UAuthService {
+  host = new UHost("local", "auth");
+  path = new UAuthPath();
   token = "";
-  constructor(host, path) {
+  constructor(host, path, token) {
     if (host) this.host = host;
     if (path) this.path = path;
+    if (token) this.token = token;
   }
 
   async signUp(name, email, password, platform) {
-    const response = await post(
-      this.host.host + this.path.signup,
-      {},
-      { name, email, password, platform }
-    );
+    const url = this.host.host + this.path.signup;
+    const body = { name, email, password, platform };
+    const response = await doPost(url, {}, body);
     const result = await response.json();
 
     if (!result.data?.token) throw new Error(result.message);
@@ -24,11 +24,9 @@ export class UAuth {
   }
 
   async signIn(email, password, platform) {
-    const response = await post(
-      this.host.host + this.path.signin,
-      {},
-      { email, password, platform }
-    );
+    const url = this.host.host + this.path.signin;
+    const body = { email, password, platform };
+    const response = await doPost(url, {}, body);
     const result = await response.json();
 
     if (!result.data?.token) throw new Error(result.message);
@@ -36,13 +34,10 @@ export class UAuth {
     return result.data.token;
   }
   async signOut(token) {
-    if (token) window.cookieStore.set({ name: "token", value: token });
-    const response = await get(
-      this.host.host + this.path.signout,
-      {},
-      this.token
-    );
+    if (token) this.token = token;
 
+    const url = this.host.host + this.path.signout;
+    const response = await doGet(url, {}, this.token);
     const result = await response.json();
 
     if (response.status != 200) throw new Error(result.message);
@@ -50,14 +45,10 @@ export class UAuth {
     return true;
   }
   async signOff(email, password, platform, token) {
-    if (token) window.cookieStore.set({ name: "token", value: token });
-    const response = await post(
-      this.host.host + this.path.signoff,
-      {},
-      { email, password, platform },
-      this.token
-    );
-
+    if (token) this.token = token;
+    const url = this.host.host + this.path.signoff;
+    const body = { email, password, platform };
+    const response = await doPost(url, {}, body, this.token);
     const result = await response.json();
 
     if (response.status != 200) throw new Error(result.message);

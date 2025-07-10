@@ -1,24 +1,26 @@
 import { UHost } from "./uhost";
 import { UPath } from "./upath";
-export type Platform = "android" | "ios" | "web";
-export class UAuth {
+import type { UPlatform } from "./usession";
+
+export class UAuthService {
   host: UHost;
   path: UPath;
+  token: string;
 
-  constructor(host?: UHost, path?: UPath);
+  constructor(host?: UHost, path?: UPath, token?: string);
   signUp(
     name: string,
     email: string,
     password: string,
-    platform: Platform
+    platform: UPlatform
   ): Promise<string>;
 
-  signIn(email: string, password: string, platform: Platform): Promise<string>;
+  signIn(email: string, password: string, platform: UPlatform): Promise<string>;
   signOut(token?: string): Promise<boolean>;
   signOff(
     email: string,
     password: string,
-    platform: Platform,
+    platform: UPlatform,
     token?: string
   ): Promise<boolean>;
 }

@@ -1,5 +1,8 @@
+import { UAuthPath, USessionPath } from "./classes/upath";
 import { UHost } from "./classes/uhost";
-import { UPath } from "./classes/upath";
-import { UAuth } from "./classes/uauth";
+import { UAuthService } from "./classes/uauth";
+import { type USession, USessionService } from "./classes/usession";
 
-export { UHost, UPath, UAuth };
+export type { USession };
+export { UHost, UAuthPath, USessionPath };
+export { UAuthService, USessionService };

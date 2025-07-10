@@ -1,20 +1,23 @@
 {
-  "name": "uauth",
+  "name": "u-auth",
   "version": "0.0.1",
   "description": "auth service for php services by uys2000",
-  "main": "dist/main.ts",
-  "repository": "https://github.com/uys2000-service/uauth",
-  "author": "uys2000",
-  "license": "MIT",
-  "scripts": {
-    "dev": "yarn tsx --watch ./src/main.ts",
-    "build": "yarn tsc",
-    "watch:ts": "yarn tsx --config tsconfig.watch.json && yarn watch:ts"
+  "main": "./src/index.mjs",
+  "module": "./src/index.mjs",
+  "types": "./src/index.d.ts",
+  "files": [
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uys2000-service/uauth.git"
   },
-  "dependencies": {},
+  "homepage": "https://github.com/uys2000-service/uauth",
+  "author": "Mehmet Uysal (Uys2000) <hi@mehmetuysal.dev>",
+  "license": "MIT",
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "devDependencies": {
-    "tsc": "^2.0.4",
-    "tsx": "^4.20.3",
-    "typescript": "^5.8.3"
+    "jsdoc": "^4.0.3",
+    "rollup": "^4.24.0"
   }
 }

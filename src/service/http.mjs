@@ -7,24 +7,21 @@ export const getUrl = (url, params = {}) => {
   return uri.toString();
 };
 
-export const getToken = async () => {
-  const token = await window.cookieStore.get("token");
-  return token.value;
-};
-
-export const get = async (url, params, useCcredentials = false) => {
+export const get = async (url, params, token) => {
+  const headers = {};
+  if (token) headers.Token = token;
   return window.fetch(getUrl(url, params), {
-    headers: {},
+    headers: headers,
     method: "GET",
-    credentials: useCcredentials ? "include" : undefined,
   });
 };
 
-export const post = async (url, params, body, useCcredentials = false) => {
+export const post = async (url, params, body, token) => {
+  const headers = {};
+  if (token) headers.Token = token;
   return window.fetch(getUrl(url, params), {
-    headers: {},
+    headers: headers,
     method: "POST",
     body: JSON.stringify(body),
-    credentials: useCcredentials ? "include" : undefined,
   });
 };

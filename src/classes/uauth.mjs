@@ -4,7 +4,7 @@ import { UPath } from "./upath.mjs";
 export class UAuth {
   host = new UHost("local");
   path = new UPath();
-
+  token = "";
   constructor(host, path) {
     if (host) this.host = host;
     if (path) this.path = path;
@@ -14,13 +14,12 @@ export class UAuth {
     const response = await post(
       this.host.host + this.path.signup,
       {},
-      { name, email, password, platform },
-      false
+      { name, email, password, platform }
     );
     const result = await response.json();
 
     if (!result.data?.token) throw new Error(result.message);
-    document.cookie = `token=${result.data.token}; path=/; SameSite=Lax`;
+    this.token = result.data.token;
     return result.data.token;
   }
 
@@ -28,23 +27,26 @@ export class UAuth {
     const response = await post(
       this.host.host + this.path.signin,
       {},
-      { email, password, platform },
-      false
+      { email, password, platform }
     );
     const result = await response.json();
 
     if (!result.data?.token) throw new Error(result.message);
-    document.cookie = `token=${result.data.token}; path=/; SameSite=Lax`;
+    this.token = result.data.token;
     return result.data.token;
   }
   async signOut(token) {
     if (token) window.cookieStore.set({ name: "token", value: token });
-    const response = await get(this.host.host + this.path.signout, {}, true);
+    const response = await get(
+      this.host.host + this.path.signout,
+      {},
+      this.token
+    );
 
     const result = await response.json();
 
     if (response.status != 200) throw new Error(result.message);
-    document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    this.token = "";
     return true;
   }
   async signOff(email, password, platform, token) {
@@ -53,13 +55,13 @@ export class UAuth {
       this.host.host + this.path.signoff,
       {},
       { email, password, platform },
-      true
+      this.token
     );
 
     const result = await response.json();
 
     if (response.status != 200) throw new Error(result.message);
-    document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+    this.token = "";
     return true;
   }
 }

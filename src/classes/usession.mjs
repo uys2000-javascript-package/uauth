@@ -1,5 +1,5 @@
-import { doGet, doDelete } from "../service/http.mjs";
-import { UHost } from "./uhost.mjs";
+import { UHost } from "@uys2000/u-host";
+import { doGet, doDelete } from "@uys2000/u-http";
 import { USessionPath } from "./upath.mjs";
 
 export class USessionService {

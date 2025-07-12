@@ -1,5 +1,5 @@
-import { doGet, doPost } from "../service/http.mjs";
-import { UHost } from "./uhost.mjs";
+import { UHost } from "@uys2000/u-host";
+import { doGet, doPost } from "@uys2000/u-http";
 import { UAuthPath } from "./upath.mjs";
 
 export class UAuthService {

@@ -1,6 +1,6 @@
 {
   "name": "@uys2000/u-auth",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "auth service for php services by uys2000",
   "main": "./src/index.mjs",
   "module": "./src/index.mjs",
@@ -27,7 +27,7 @@
     "url": "https://github.com/uys2000-service/uauth/issues"
   },
   "dependencies": {
-    "@uys2000/u-host": "^0.0.1",
+    "@uys2000/u-host": "^0.0.3",
     "@uys2000/u-http": "^0.0.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@uys2000/u-auth",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "auth service for php services by uys2000",
   "main": "./src/index.mjs",
   "module": "./src/index.mjs",

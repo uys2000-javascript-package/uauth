@@ -2,9 +2,10 @@ import { UHost } from "./uhost";
 import { UPath } from "./upath";
 import type { UPlatform } from "./usession";
 
-export interface UUser {
+export interface USessionResponse {
   name: string;
   email: string;
+  token: string;
 }
 export class UAuthService {
   host: UHost;
@@ -17,9 +18,13 @@ export class UAuthService {
     email: string,
     password: string,
     platform: UPlatform
-  ): Promise<UUser>;
+  ): Promise<USessionResponse>;
 
-  signIn(email: string, password: string, platform: UPlatform): Promise<UUser>;
+  signIn(
+    email: string,
+    password: string,
+    platform: UPlatform
+  ): Promise<USessionResponse>;
   signOut(token?: string): Promise<boolean>;
   signOff(
     email: string,

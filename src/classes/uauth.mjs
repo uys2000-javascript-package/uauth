@@ -19,8 +19,8 @@ export class UAuthService {
     const result = await response.json();
 
     if (!result.data?.token) throw new Error(result.message);
-    this.token = result.data.token;
-    return result.data.token;
+    this.token = result.data;
+    return result.data;
   }
 
   async signIn(email, password, platform) {
@@ -30,8 +30,8 @@ export class UAuthService {
     const result = await response.json();
 
     if (!result.data?.token) throw new Error(result.message);
-    this.token = result.data.token;
-    return result.data.token;
+    this.token = result.data;
+    return result.data;
   }
   async signOut(token) {
     if (token) this.token = token;

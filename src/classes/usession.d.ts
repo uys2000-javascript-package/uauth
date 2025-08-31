@@ -15,7 +15,7 @@ export class USessionService {
   token: string;
 
   constructor(host?: UHost, path?: USessionPath, token?: string);
-  check(): Promise<boolean>;
+  check(): Promise<{ status: boolean; name: string; email: string }>;
   list(): Promise<Array<USession>>;
   remove(token: string): Promise<boolean>;
 }

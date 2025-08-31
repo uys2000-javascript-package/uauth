@@ -19,7 +19,7 @@ export class USessionService {
     const result = await response.json();
 
     if (!result.data?.status) throw new Error(result.message);
-    return result.data.status;
+    return result.data;
   }
   async list() {
     if (!this.token) return false;

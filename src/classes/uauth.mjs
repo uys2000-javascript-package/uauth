@@ -37,7 +37,7 @@ export class UAuthService {
     if (token) this.token = token;
 
     const url = this.host.host + this.path.signout;
-    const response = await doGet(url, {}, this.token);
+    const response = await doGet(url, {}, { token: this.token });
     const result = await response.json();
 
     if (response.status != 200) throw new Error(result.message);
@@ -48,7 +48,7 @@ export class UAuthService {
     if (token) this.token = token;
     const url = this.host.host + this.path.signoff;
     const body = { email, password, platform };
-    const response = await doPost(url, {}, body, this.token);
+    const response = await doPost(url, {}, body, { token: this.token });
     const result = await response.json();
 
     if (response.status != 200) throw new Error(result.message);

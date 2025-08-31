@@ -15,7 +15,7 @@ export class USessionService {
   async check() {
     if (!this.token) return false;
     const url = this.host.host + this.path.check;
-    const response = await doGet(url, {}, this.token);
+    const response = await doGet(url, {}, { token: this.token });
     const result = await response.json();
 
     if (!result.data?.status) throw new Error(result.message);
@@ -24,7 +24,7 @@ export class USessionService {
   async list() {
     if (!this.token) return false;
     const url = this.host.host + this.path.list;
-    const response = await doGet(url, {}, this.token);
+    const response = await doGet(url, {}, { token: this.token });
     const result = await response.json();
 
     if (!result.data?.sessions) throw new Error(result.message);
@@ -33,7 +33,7 @@ export class USessionService {
   async remove(token) {
     if (!token) return false;
     const url = this.host.host + this.path.remove;
-    const response = await doDelete(url, { token }, this.token);
+    const response = await doDelete(url, { token }, { token: this.token });
     const result = await response.json();
 
     if (!result.data?.status) throw new Error(result.message);
